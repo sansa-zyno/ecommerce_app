@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "378489918533",
+    "project_id": "e-commerce-shop-1efa7",
+    "storage_bucket": "e-commerce-shop-1efa7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378489918533:android:cbeab001d5d7351ed9bf2c",
+        "android_client_info": {
+          "package_name": "com.zynotech.shop_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378489918533-19v5gov2o5htok17a8v71mn5vcgrigvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGfAARZLSPBjC8v7HsrUOZKut62u39MBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378489918533-19v5gov2o5htok17a8v71mn5vcgrigvq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:378489918533:android:5e643b36501e74c7d9bf2c",
+        "android_client_info": {
+          "package_name": "com.zynotech.shop_app_admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "378489918533-19v5gov2o5htok17a8v71mn5vcgrigvq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGfAARZLSPBjC8v7HsrUOZKut62u39MBw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378489918533-19v5gov2o5htok17a8v71mn5vcgrigvq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
