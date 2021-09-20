@@ -28,7 +28,7 @@ dependencies:
   flutter_credit_card: ^0.1.3
   dio: ^3.0.8
   http: ^0.12.0+4
-  provider:
+  provider: 
   transparent_image: ^0.1.0
   flutter_spinkit: ^4.1.2
   uuid: ^2.2.0
@@ -41,6 +41,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.8.1"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "images/aisha.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

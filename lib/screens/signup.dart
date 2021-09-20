@@ -48,17 +48,18 @@ class _SignUpState extends State<SignUp> {
                         key: _formKey,
                         child: ListView(
                           children: <Widget>[
-                            SizedBox(
-                              height: 40,
-                            ),
                             Padding(
-                              padding: const EdgeInsets.all(16.0),
+                              padding: const EdgeInsets.all(0),
                               child: Container(
-                                  alignment: Alignment.topCenter,
-                                  child: Image.asset(
-                                    'images/logo.png',
-                                    width: 260.0,
-                                  )),
+                                child: Image.asset(
+                                  'images/opel2.jpg',
+                                  fit: BoxFit.fitWidth,
+                                  height: 400,
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 8,
                             ),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(

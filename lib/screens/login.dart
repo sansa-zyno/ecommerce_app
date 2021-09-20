@@ -46,15 +46,16 @@ class _LoginState extends State<Login> {
                           child: ListView(
                             children: <Widget>[
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Container(
-                                    alignment: Alignment.topCenter,
-                                    child: Flexible(
-                                      child: Image.asset(
-                                        'images/logo.png',
-                                        width: 260.0,
-                                      ),
-                                    )),
+                                  padding: const EdgeInsets.all(0),
+                                  child: Container(
+                                    child: Image.asset(
+                                      'images/opel2.jpg',
+                                      fit: BoxFit.fitWidth,
+                                      height: 450,
+                                    ),
+                                  )),
+                              SizedBox(
+                                height: 8,
                               ),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(

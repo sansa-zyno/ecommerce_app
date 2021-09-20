@@ -40,7 +40,7 @@ class StripeServices {
     return stripeId;
   }
 
-  Future<void> addCard(
+  Future<bool> addCard(
       {int cardNumber,
       int month,
       int year,
@@ -54,35 +54,40 @@ class StripeServices {
       "card[exp_year]": year,
       "card[cvc]": cvc
     };
-    Dio()
-        .post(PAYMENT_METHOD_URL,
-            data: body,
-            options: Options(
-                contentType: Headers.formUrlEncodedContentType,
-                headers: headers))
-        .then((response) {
-      String paymentMethodId = response.data["id"];
-      print("=== The payment mathod id id ===: $paymentMethodId");
-      http
-          .post(
-              "https://api.stripe.com/v1/payment_methods/$paymentMethodId/attach",
-              body: {"customer": stripeId},
-              headers: headers)
-          .catchError((err) {
-        print("ERROR ATTACHING CARD TO CUSTOMER");
-        print("ERROR: ${err.toString()}");
-      });
+    try {
+      await Dio()
+          .post(PAYMENT_METHOD_URL,
+              data: body,
+              options: Options(
+                  contentType: Headers.formUrlEncodedContentType,
+                  headers: headers))
+          .then((response) {
+        String paymentMethodId = response.data["id"];
+        print("=== The payment mathod id id ===: $paymentMethodId");
+        http
+            .post(
+                "https://api.stripe.com/v1/payment_methods/$paymentMethodId/attach",
+                body: {"customer": stripeId},
+                headers: headers)
+            .catchError((err) {
+          print("ERROR ATTACHING CARD TO CUSTOMER");
+          print("ERROR: ${err.toString()}");
+        });
 
-      CardServices cardServices = CardServices();
-      cardServices.createCard(
-          id: paymentMethodId,
-          last4: int.parse(cardNumber.toString().substring(11)),
-          exp_month: month,
-          exp_year: year,
-          userId: userId);
-      UserServices userService = UserServices();
-      userService.updateDetails({"id": userId, "activeCard": paymentMethodId});
-    });
+        CardServices cardServices = CardServices();
+        cardServices.createCard(
+            id: paymentMethodId,
+            last4: int.parse(cardNumber.toString().substring(11)),
+            exp_month: month,
+            exp_year: year,
+            userId: userId);
+        UserServices userService = UserServices();
+        userService.updateDetails({"id": userId, "activeCard": paymentMethodId});
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   Future<bool> charge(

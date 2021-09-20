@@ -70,11 +70,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 accountEmail: CustomText(
-                  text: userProvider.user?.email ?? "email loading...",
+                  text: userProvider.user.email ?? "email loading...",
                   color: white,
                 ),
                 accountName: CustomText(
-                  text: userProvider.userModel?.name ?? "name loading",
+                  text: userProvider.userModel.name ?? "name loading...",
                   color: white,
                 ),
               ),

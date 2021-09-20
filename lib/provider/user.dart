@@ -106,6 +106,7 @@ class UserProvider with ChangeNotifier {
   Future<void> _onStateChanged(FirebaseUser user) async {
     if (user == null) {
       _status = Status.Unauthenticated;
+      notifyListeners();
     } else {
       _user = user;
       _status = Status.Authenticated;

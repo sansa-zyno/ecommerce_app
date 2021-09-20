@@ -18,6 +18,7 @@ class CreditCard extends StatefulWidget {
 }
 
 class _CreditCardState extends State<CreditCard> {
+  final _scacffoldKey = GlobalKey<ScaffoldState>();
   String cardNumber = '';
   String expiryDate = '';
   String cardHolderName = '';
@@ -29,6 +30,7 @@ class _CreditCardState extends State<CreditCard> {
     final user = Provider.of<UserProvider>(context);
 
     return Scaffold(
+      key: _scacffoldKey,
       appBar: AppBar(
         title: Text(widget.title),
       ),
@@ -78,23 +80,24 @@ class _CreditCardState extends State<CreditCard> {
           print(cardNumber.replaceAll(RegExp(r"\s+\b|\b\s"), ""));
 //
           StripeServices stripeServices = StripeServices();
+          bool res;
           if (user.userModel.stripeId == null) {
             String stripeID = await stripeServices.createStripeCustomer(
                 email: user.userModel.email, userId: user.user.uid);
             print("stripe id: $stripeID");
-            print("stripe id: $stripeID");
-            print("stripe id: $stripeID");
-            print("stripe id: $stripeID");
 
-            stripeServices.addCard(
+            res = await stripeServices.addCard(
                 stripeId: stripeID,
                 month: exp_month,
                 year: exp_year,
                 cvc: cvc,
                 cardNumber: carNo,
                 userId: user.user.uid);
+            if (res) {
+              user.hasCard();
+            }
           } else {
-            stripeServices.addCard(
+            res = await stripeServices.addCard(
                 stripeId: user.userModel.stripeId,
                 month: exp_month,
                 year: exp_year,
@@ -102,10 +105,16 @@ class _CreditCardState extends State<CreditCard> {
                 cardNumber: carNo,
                 userId: user.user.uid);
           }
-          user.hasCard();
           user.loadCardsAndPurchase(userId: user.user.uid);
-
-          changeScreenReplacement(context, HomePage());
+       if (res == true) {
+            Navigator.pop(context);
+          } else {
+            _scacffoldKey.currentState.showSnackBar(SnackBar(
+              content: Text(
+                "Invalid card details",
+              ),
+            ));
+          }
         },
         tooltip: 'Submit',
         child: Icon(Icons.add),
